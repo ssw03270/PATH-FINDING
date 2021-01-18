@@ -1,7 +1,6 @@
 #include<iostream>
 #include "map.hpp"
 
-
 void Map::setMap(){
 	// make foundation of map
 	map = new int*[MAX_WIDTH];
@@ -26,6 +25,7 @@ void Map::setMap(){
 		
 		map[randX][randY] = 1;
 	}
+	
 }
 
 int** Map::getMap(){
@@ -39,4 +39,22 @@ void Map::printMap(){
         }
         std::cout << std::endl;
     }
+}
+
+void Map::setWayPoint(){
+	startX = rand() % (MAX_WIDTH - 1) + 1;
+	startY = rand() % (MAX_HEIGHT - 1) + 1;
+
+	while(map[startX][startY] == 1){
+		startX = rand() % (MAX_WIDTH - 1) + 1;
+		startY = rand() % (MAX_HEIGHT - 1) + 1;
+	}
+
+	endX = rand() % (MAX_WIDTH - 1) + 1;
+	endY = rand() % (MAX_HEIGHT - 1) + 1;
+
+	while(map[endX][endY] == 1){
+		endX = rand() % (MAX_WIDTH - 1) + 1;
+		endY = rand() % (MAX_HEIGHT - 1) + 1;
+	}
 }

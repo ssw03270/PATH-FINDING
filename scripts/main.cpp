@@ -4,5 +4,7 @@
 int main(){
     Map map;
 	map.setMap();
+    map.setWayPoint();
     map.printMap();
+    
 }

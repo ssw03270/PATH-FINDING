@@ -3,7 +3,9 @@
 
 CMakeFiles/PATH_FINDING.dir/main.cpp.o: main.cpp
 CMakeFiles/PATH_FINDING.dir/main.cpp.o: map.hpp
+CMakeFiles/PATH_FINDING.dir/main.cpp.o: point.hpp
 
 CMakeFiles/PATH_FINDING.dir/map.cpp.o: map.cpp
 CMakeFiles/PATH_FINDING.dir/map.cpp.o: map.hpp
+CMakeFiles/PATH_FINDING.dir/map.cpp.o: point.hpp
 
