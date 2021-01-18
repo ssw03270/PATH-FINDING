@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ssw03270/GitHub/PATH-FINDING/scripts/main.cpp
+iostream
+-
+map.hpp
+/home/ssw03270/GitHub/PATH-FINDING/scripts/map.hpp
+
+/home/ssw03270/GitHub/PATH-FINDING/scripts/map.cpp
+iostream
+-
+map.hpp
+/home/ssw03270/GitHub/PATH-FINDING/scripts/map.hpp
+
+/home/ssw03270/GitHub/PATH-FINDING/scripts/map.hpp
+random
+-
+
