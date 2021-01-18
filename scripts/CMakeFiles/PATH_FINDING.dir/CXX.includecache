@@ -6,8 +6,10 @@
 
 #IncludeRegexTransform: 
 
-/home/ssw03270/GitHub/PATH-FINDING/scripts/main.cpp
+/home/ssw03270/GitHub/PATH-FINDING/scripts/map.cpp
 iostream
+-
+cstdio
 -
 map.hpp
 /home/ssw03270/GitHub/PATH-FINDING/scripts/map.hpp
@@ -15,7 +17,11 @@ map.hpp
 /home/ssw03270/GitHub/PATH-FINDING/scripts/map.hpp
 random
 -
-queue
+vector
+-
+tuple
+-
+algorithm
 -
 point.hpp
 /home/ssw03270/GitHub/PATH-FINDING/scripts/point.hpp

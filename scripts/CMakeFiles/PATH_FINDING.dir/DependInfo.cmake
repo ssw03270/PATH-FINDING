@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ssw03270/GitHub/PATH-FINDING/scripts/main.cpp" "/home/ssw03270/GitHub/PATH-FINDING/scripts/CMakeFiles/PATH_FINDING.dir/main.cpp.o"
   "/home/ssw03270/GitHub/PATH-FINDING/scripts/map.cpp" "/home/ssw03270/GitHub/PATH-FINDING/scripts/CMakeFiles/PATH_FINDING.dir/map.cpp.o"
+  "/home/ssw03270/GitHub/PATH-FINDING/scripts/point.cpp" "/home/ssw03270/GitHub/PATH-FINDING/scripts/CMakeFiles/PATH_FINDING.dir/point.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

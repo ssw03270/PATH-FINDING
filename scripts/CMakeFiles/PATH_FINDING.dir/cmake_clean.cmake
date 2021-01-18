@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/PATH_FINDING.dir/main.cpp.o"
   "CMakeFiles/PATH_FINDING.dir/map.cpp.o"
+  "CMakeFiles/PATH_FINDING.dir/point.cpp.o"
   "PATH_FINDING"
   "PATH_FINDING.pdb"
 )

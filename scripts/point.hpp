@@ -13,10 +13,11 @@ class Point {
             costH = _costH;
             costF = _costF;
         }
-
-        int setG(int g);
-        int setH(int h);
-        int setF(int f);
+        Point(){
+            costG = 0;
+            costH = 0;
+            costF = 0;
+        }
 
         int getG();
         int getH();

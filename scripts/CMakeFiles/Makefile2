@@ -74,12 +74,12 @@ clean: CMakeFiles/PATH_FINDING.dir/clean
 CMakeFiles/PATH_FINDING.dir/all:
 	$(MAKE) -f CMakeFiles/PATH_FINDING.dir/build.make CMakeFiles/PATH_FINDING.dir/depend
 	$(MAKE) -f CMakeFiles/PATH_FINDING.dir/build.make CMakeFiles/PATH_FINDING.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ssw03270/GitHub/PATH-FINDING/scripts/CMakeFiles --progress-num=1,2,3 "Built target PATH_FINDING"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ssw03270/GitHub/PATH-FINDING/scripts/CMakeFiles --progress-num=1,2,3,4 "Built target PATH_FINDING"
 .PHONY : CMakeFiles/PATH_FINDING.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/PATH_FINDING.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ssw03270/GitHub/PATH-FINDING/scripts/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ssw03270/GitHub/PATH-FINDING/scripts/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/PATH_FINDING.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ssw03270/GitHub/PATH-FINDING/scripts/CMakeFiles 0
 .PHONY : CMakeFiles/PATH_FINDING.dir/rule

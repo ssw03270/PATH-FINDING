@@ -177,6 +177,33 @@ map.cpp.s:
 	$(MAKE) -f CMakeFiles/PATH_FINDING.dir/build.make CMakeFiles/PATH_FINDING.dir/map.cpp.s
 .PHONY : map.cpp.s
 
+point.o: point.cpp.o
+
+.PHONY : point.o
+
+# target to build an object file
+point.cpp.o:
+	$(MAKE) -f CMakeFiles/PATH_FINDING.dir/build.make CMakeFiles/PATH_FINDING.dir/point.cpp.o
+.PHONY : point.cpp.o
+
+point.i: point.cpp.i
+
+.PHONY : point.i
+
+# target to preprocess a source file
+point.cpp.i:
+	$(MAKE) -f CMakeFiles/PATH_FINDING.dir/build.make CMakeFiles/PATH_FINDING.dir/point.cpp.i
+.PHONY : point.cpp.i
+
+point.s: point.cpp.s
+
+.PHONY : point.s
+
+# target to generate assembly for a file
+point.cpp.s:
+	$(MAKE) -f CMakeFiles/PATH_FINDING.dir/build.make CMakeFiles/PATH_FINDING.dir/point.cpp.s
+.PHONY : point.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +219,9 @@ help:
 	@echo "... map.o"
 	@echo "... map.i"
 	@echo "... map.s"
+	@echo "... point.o"
+	@echo "... point.i"
+	@echo "... point.s"
 .PHONY : help
 
 
