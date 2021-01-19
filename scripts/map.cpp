@@ -40,22 +40,39 @@ int** Map::getMap(){
 }
 
 void Map::printMap(){
-	for(int i = 0; i < MAX_WIDTH; i++){
-		for(int j = 0; j < MAX_HEIGHT; j++){
-			printf("%3d",visualizedMap[i][j]);
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
-	std::cout << std::endl;
+	std::cout << "this is a random map design" << std::endl;
 
 	for(int i = 0; i < MAX_WIDTH; i++){
 		for(int j = 0; j < MAX_HEIGHT; j++){
-			printf("%3d",map[i][j]);
+			switch(map[i][j]){
+				case 0:
+				std::cout << "□   ";
+				break;
+				case 1:
+				std::cout << "■   ";
+				break;
+			}
 		}
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
+
+	std::cout << "this is a player movement" << std::endl;
+
+	for(int i = 0; i < MAX_WIDTH; i++){
+		for(int j = 0; j < MAX_HEIGHT; j++){
+			if(i == endX && j == endY){
+				std::cout << "★   ";
+			}else if(map[i][j] == 1){
+				std::cout << "■   ";
+			}else if(visualizedMap[i][j] == 0){
+				std::cout << "■   ";
+			}else{
+				printf("%-4d",visualizedMap[i][j]);
+			}
+		}
+		std::cout << std::endl;
+	}
 	std::cout << std::endl;
 }
 
@@ -79,8 +96,8 @@ void Map::setWayPoint(){
 
 void Map::pathFinding(){
 
-	std::cout << startX << ":" << startY << std::endl;
-	std::cout << endX << ":" << endY << std::endl;
+	std::cout << "start point is " << startX << ":" << startY << std::endl;
+	std::cout << "end point is " << endX << ":" << endY << std::endl;
 
 	int dist = (abs(startX - endX) + abs(startY - endY)) * 10;
 	Point* startPoint = new Point(0, dist, dist);
@@ -95,7 +112,6 @@ void Map::pathFinding(){
 		int frontY = std::get<2>(v.front());
 
 		visualizedMap[frontX][frontY] = num++;
-		
 		
 		if(frontX == endX && frontY == endY){
 			printMap();
@@ -113,6 +129,7 @@ void Map::pathFinding(){
 		
 		
 	}
+	std::cout << "there is no path. plz reload program" << std::endl;
 
 }
 
@@ -166,9 +183,7 @@ int Map::randomNum(int minNum, int maxNum){
 	std::random_device rn;
     std::mt19937_64 rnd( rn() );
  
-    //< 2단계. 분포 설정 ( 정수 )
     std::uniform_int_distribution<int> range(minNum, maxNum);
  
-    //< 3단계. 값 추출
     return range( rnd );
 }
