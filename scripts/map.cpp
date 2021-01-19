@@ -120,7 +120,7 @@ void Map::setWayPoint(){
 	}
 }
 
-void Map::pathFinding(){
+bool Map::pathFinding(){
 
 	std::cout << "start point is " << startX << ":" << startY << std::endl;
 	std::cout << "end point is " << endX << ":" << endY << std::endl;
@@ -137,9 +137,11 @@ void Map::pathFinding(){
 		int frontY = std::get<2>(v.front());
 		
 		if(frontX == endX && frontY == endY){
-			printPath(endX, endY);
-			printMap();
-			return;
+			// printPath(endX, endY);
+			// printMap();
+			std::cout << "finding way successfully!" << std::endl;
+			deleteMemory();
+			return true;
 		}
 
 		closedList[frontX][frontY] = openList[frontX][frontY];
@@ -154,7 +156,8 @@ void Map::pathFinding(){
 		
 	}
 	std::cout << "there is no path. plz reload program" << std::endl;
-
+	deleteMemory();
+	return false;
 }
 
 void Map::findNearPoint(int x, int y){
@@ -212,6 +215,11 @@ int Map::randomNum(int minNum, int maxNum){
     std::mt19937_64 rnd( rn() );
  
     std::uniform_int_distribution<int> range(minNum, maxNum);
- 
+	
     return range( rnd );
+}
+
+void Map::deleteMemory(){
+	delete[] map;
+
 }
