@@ -63,17 +63,43 @@ void Map::printMap(){
 		for(int j = 0; j < MAX_HEIGHT; j++){
 			if(i == endX && j == endY){
 				std::cout << "★   ";
+			}else if(i == startX && j == startY){
+				std::cout << "☆   ";
+			}else if(visualizedMap[i][j] == 9999){
+				std::cout << "◎   ";
 			}else if(map[i][j] == 1){
 				std::cout << "■   ";
+			}else if(map[i][j] == 0){
+				std::cout << "□   ";
 			}else if(visualizedMap[i][j] == 0){
 				std::cout << "■   ";
-			}else{
-				printf("%-4d",visualizedMap[i][j]);
 			}
 		}
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
+}
+
+void Map::printPath(int lastX, int lastY){
+	int needX = lastX;
+	int needY = lastY;
+	while(!s.empty()){
+		if(needX == 9999 && needY == 9999){
+			break;
+		}
+		if(std::get<0>(s.top()) == needX && std::get<1>(s.top()) == needY){
+			realPath.push_back(std::pair<int, int>(needX, needY));
+			needX = std::get<2>(s.top());
+			needY = std::get<3>(s.top());
+			s.pop();
+		}else{
+			s.pop();
+		}
+	}
+	for(int i = 0; i < realPath.size(); i++){
+		std::cout << realPath[i].first << ":" << realPath[i].second << std::endl;
+		visualizedMap[realPath[i].first][realPath[i].second] = 9999;
+	}
 }
 
 void Map::setWayPoint(){
@@ -101,19 +127,17 @@ void Map::pathFinding(){
 
 	int dist = (abs(startX - endX) + abs(startY - endY)) * 10;
 	Point* startPoint = new Point(0, dist, dist);
-	v.push_back(std::make_tuple(startPoint, startX, startY));
+	v.push_back(std::make_tuple(startPoint, startX, startY, 9999, 9999));
+	s.push(std::make_tuple(startX, startY, 9999, 9999));
 	openList[startX][startY] = startPoint;
 	openList2[startX][startY] = true;
-
-	num = 1;
 
 	while(!v.empty()){
 		int frontX = std::get<1>(v.front());
 		int frontY = std::get<2>(v.front());
-
-		visualizedMap[frontX][frontY] = num++;
 		
 		if(frontX == endX && frontY == endY){
+			printPath(endX, endY);
 			printMap();
 			return;
 		}
@@ -148,12 +172,14 @@ void Map::findNearPoint(int x, int y){
 					Point* nextPoint = new Point(closedList[x][y] -> getG() + 10, dist, closedList[x][y] -> getG() + 10 + dist);
 					openList[nextX][nextY] = nextPoint;
 					openList2[nextX][nextY] = true;
-					v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY));
+					v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY, x, y));
+					s.push(std::make_tuple(nextX, nextY, x, y));
 				}else{
 					Point* nextPoint = new Point(closedList[x][y] -> getG() + 14, dist, closedList[x][y] -> getG() + 14 + dist);
 					openList[nextX][nextY] = nextPoint;
 					openList2[nextX][nextY] = true;
-					v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY));
+					v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY, x, y));
+					s.push(std::make_tuple(nextX, nextY, x, y));
 				}
 			}
 			// old point
@@ -163,14 +189,16 @@ void Map::findNearPoint(int x, int y){
 						Point* nextPoint = new Point(closedList[x][y] -> getG() + 10, dist, closedList[x][y] -> getG() + 10 + dist);
 						openList[nextX][nextY] = nextPoint;
 						openList2[nextX][nextY] = true;
-						v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY));
+						v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY, x, y));
+						s.push(std::make_tuple(nextX, nextY, x, y));
 					}
 				}else{
 					if(openList[nextX][nextY] -> getF() > closedList[x][y] -> getF() + 14){
 						Point* nextPoint = new Point(closedList[x][y] -> getG() + 14, dist, closedList[x][y] -> getG() + 14 + dist);
 						openList[nextX][nextY] = nextPoint;
 						openList2[nextX][nextY] = true;
-						v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY));
+						v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY, x, y));
+						s.push(std::make_tuple(nextX, nextY, x, y));
 					}
 				}
 			}

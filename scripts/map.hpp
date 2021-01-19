@@ -3,6 +3,7 @@
 
 #include<random>
 #include<vector>
+#include<stack>
 #include<tuple>
 #include<algorithm>
 #include"point.hpp"
@@ -16,24 +17,25 @@ class Map {
         int** map;
         int startX, startY;
         int endX, endY;
-
         Point* openList[20][20];
         bool openList2[20][20];
         Point* closedList[20][20];
         bool closedList2[20][20];
         int visualizedMap[20][20] = {0};
-        int num;
-        std::vector<std::tuple<Point*, int, int>> v;    // NEED TO FIX
+        std::stack<std::tuple<int, int, int, int>> s;             // current, pre
+        std::vector<std::tuple<Point*, int, int, int, int>> v;    // NEED TO FIX
+        std::vector<std::pair<int, int>> realPath;
         
 	public:
 		void setMap();
         int** getMap();
         void printMap();
+        void printPath(int, int);
         void setWayPoint();
         void pathFinding();
         void findNearPoint(int, int);
         int randomNum(int, int);
-        static bool compare(const std::tuple<Point*, int,int>& a, const std::tuple<Point*, int,int>& b){
+        static bool compare(const std::tuple<Point*, int, int, int, int>& a, const std::tuple<Point*, int, int, int, int>& b){
             if(std::get<0>(a) -> getF() == std::get<0>(b) -> getF()){
                 return std::get<0>(a) -> getH() < std::get<0>(b) -> getH();
             }else{
