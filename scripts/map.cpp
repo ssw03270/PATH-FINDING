@@ -4,11 +4,6 @@
 
 
 void Map::setMap(){
-	// make foundation of map
-	map = new int*[MAX_WIDTH];
-	for(int i = 0; i < MAX_WIDTH; i++){
-		map[i] = new int[MAX_HEIGHT];
-	}
 
 	// set border line
 	for(int i = 0; i < MAX_WIDTH; i++){
@@ -35,9 +30,6 @@ void Map::setMap(){
 	
 }
 
-int** Map::getMap(){
-	return map;
-}
 
 void Map::printMap(){
 	std::cout << "this is a random map design" << std::endl;
@@ -122,9 +114,6 @@ void Map::setWayPoint(){
 
 bool Map::pathFinding(){
 
-	std::cout << "start point is " << startX << ":" << startY << std::endl;
-	std::cout << "end point is " << endX << ":" << endY << std::endl;
-
 	int dist = (abs(startX - endX) + abs(startY - endY)) * 10;
 	Point* startPoint = new Point(0, dist, dist);
 	v.push_back(std::make_tuple(startPoint, startX, startY, 9999, 9999));
@@ -139,8 +128,7 @@ bool Map::pathFinding(){
 		if(frontX == endX && frontY == endY){
 			// printPath(endX, endY);
 			// printMap();
-			std::cout << "finding way successfully!" << std::endl;
-			deleteMemory();
+			// std::cout << "finding way successfully!" << std::endl;
 			return true;
 		}
 
@@ -152,11 +140,7 @@ bool Map::pathFinding(){
 		findNearPoint(frontX, frontY);
 
 		std::sort(v.begin(), v.end(), compare);
-		
-		
 	}
-	std::cout << "there is no path. plz reload program" << std::endl;
-	deleteMemory();
 	return false;
 }
 
@@ -166,6 +150,9 @@ void Map::findNearPoint(int x, int y){
 	for(int i = 0; i < 8; i++){
 		int nextX = x + dirX[i];
 		int nextY = y + dirY[i];
+		if (nextX < 1 || nextX >= MAX_WIDTH - 1 || nextY < 1 || nextX >= MAX_HEIGHT - 1) {
+			continue;
+		}
 		// can move point
 		if(!closedList2[nextX][nextY]){
 			int dist = (abs(nextX - endX) + abs(nextY - endY)) * 10;
@@ -217,9 +204,4 @@ int Map::randomNum(int minNum, int maxNum){
     std::uniform_int_distribution<int> range(minNum, maxNum);
 	
     return range( rnd );
-}
-
-void Map::deleteMemory(){
-	delete[] map;
-
 }

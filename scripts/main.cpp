@@ -5,30 +5,28 @@
 
 #include"map.hpp"
 
-using namespace std;
-using namespace chrono;
 int main(){
     Map map[100];
-    ofstream writeFile;
-    string fileNmae = "100x100";
-    string fileType = ".csv";
+    std::ofstream writeFile;
+    std::string fileNmae = "20x20";
+    std::string fileType = ".csv";
     writeFile.open(fileNmae + fileType);
 
     
     for(int i = 0; i < 100; i++){
-        system_clock::time_point start = system_clock::now();  
+        std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
         map[i].setMap();
         map[i].setWayPoint();
         if(!map[i].pathFinding()){
             i -= 1;
             continue;
         }
-        system_clock::time_point end = system_clock::now();
-        milliseconds ms = duration_cast<milliseconds>(end - start);  
+        std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
+        std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-        cout << ms.count() << endl;
+        // std::cout << ms.count() << std::endl;
 
-        writeFile << fileNmae << "," << "2500," << ms.count() << "\n";
+        writeFile << fileNmae << "," << "100," << ms.count() << "\n";
         
     }
     
