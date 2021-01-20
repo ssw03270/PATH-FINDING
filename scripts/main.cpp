@@ -1,8 +1,7 @@
 #include<iostream>
 #include<chrono>
-#include<fstream>
 #include<cstring>
-
+#include<fstream>
 #include"map.hpp"
 
 Map map[100];
@@ -13,20 +12,22 @@ int main(){
     writeFile.open(fileNmae + fileType);
 
     
-    for(int i = 0; i < 1; i++){
+    for(int i = 0; i < 100; i++){
         std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
         map[i].setMap();
         map[i].setWayPoint();
         if(!map[i].pathFinding()){
+            std::cout << "no path" << std::endl;
             i -= 1;
-            continue;
+        }else{
+            std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
+            std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+            std::cout << ms.count() << std::endl;
+
+            writeFile << fileNmae << "," << "25000," << ms.count() << "\n";
         }
-        std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
-        std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-
-        // std::cout << ms.count() << std::endl;
-
-        writeFile << fileNmae << "," << "62500," << ms.count() << "\n";
+        
         
     }
     

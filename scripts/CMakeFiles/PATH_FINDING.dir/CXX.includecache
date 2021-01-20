@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/ssw03270/GitHub/PATH-FINDING/scripts/main.cpp
+iostream
+-
+chrono
+-
+cstring
+-
+fstream
+-
+map.hpp
+/home/ssw03270/GitHub/PATH-FINDING/scripts/map.hpp
+
 /home/ssw03270/GitHub/PATH-FINDING/scripts/map.cpp
 iostream
 -

@@ -10,7 +10,7 @@
 
 #define MAX_WIDTH 500
 #define MAX_HEIGHT 500
-#define NUM_OBSTACLE 62500    // size * size / 4
+#define NUM_OBSTACLE 25000    // size * size / 10
 
 class Map {
     private:
