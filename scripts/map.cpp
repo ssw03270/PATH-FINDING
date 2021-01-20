@@ -121,9 +121,16 @@ bool Map::pathFinding(){
 	openList[startX][startY] = startPoint;
 	openList2[startX][startY] = true;
 
+	
 	while(!v.empty()){
 		int frontX = std::get<1>(v.front());
 		int frontY = std::get<2>(v.front());
+		if(notRenewal[frontX][frontY]){
+			v.erase(v.begin());
+			continue;
+		}
+		notRenewal[frontX][frontY] = true;
+		// std::cout << frontX << ":" << frontY << std::endl;
 		
 		if(frontX == endX && frontY == endY){
 			// printPath(endX, endY);
@@ -150,7 +157,7 @@ void Map::findNearPoint(int x, int y){
 	for(int i = 0; i < 8; i++){
 		int nextX = x + dirX[i];
 		int nextY = y + dirY[i];
-		if (nextX < 1 || nextX >= MAX_WIDTH - 1 || nextY < 1 || nextX >= MAX_HEIGHT - 1) {
+		if (nextX < 1 || nextX >= MAX_WIDTH - 1 || nextY < 1 || nextY >= MAX_HEIGHT - 1) {
 			continue;
 		}
 		// can move point
@@ -164,12 +171,14 @@ void Map::findNearPoint(int x, int y){
 					openList2[nextX][nextY] = true;
 					v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY, x, y));
 					s.push(std::make_tuple(nextX, nextY, x, y));
+					notRenewal[nextX][nextY] = false;
 				}else{
 					Point* nextPoint = new Point(closedList[x][y] -> getG() + 14, dist, closedList[x][y] -> getG() + 14 + dist);
 					openList[nextX][nextY] = nextPoint;
 					openList2[nextX][nextY] = true;
 					v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY, x, y));
 					s.push(std::make_tuple(nextX, nextY, x, y));
+					notRenewal[nextX][nextY] = false;
 				}
 			}
 			// old point
@@ -181,6 +190,7 @@ void Map::findNearPoint(int x, int y){
 						openList2[nextX][nextY] = true;
 						v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY, x, y));
 						s.push(std::make_tuple(nextX, nextY, x, y));
+						notRenewal[nextX][nextY] = false;
 					}
 				}else{
 					if(openList[nextX][nextY] -> getF() > closedList[x][y] -> getF() + 14){
@@ -189,6 +199,7 @@ void Map::findNearPoint(int x, int y){
 						openList2[nextX][nextY] = true;
 						v.push_back(std::make_tuple(openList[nextX][nextY], nextX, nextY, x, y));
 						s.push(std::make_tuple(nextX, nextY, x, y));
+						notRenewal[nextX][nextY] = false;
 					}
 				}
 			}

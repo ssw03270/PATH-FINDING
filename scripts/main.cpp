@@ -5,15 +5,15 @@
 
 #include"map.hpp"
 
+Map map[100];
 int main(){
-    Map map[100];
     std::ofstream writeFile;
-    std::string fileNmae = "20x20";
+    std::string fileNmae = "500x500";
     std::string fileType = ".csv";
     writeFile.open(fileNmae + fileType);
 
     
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < 1; i++){
         std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
         map[i].setMap();
         map[i].setWayPoint();
@@ -26,7 +26,7 @@ int main(){
 
         // std::cout << ms.count() << std::endl;
 
-        writeFile << fileNmae << "," << "100," << ms.count() << "\n";
+        writeFile << fileNmae << "," << "62500," << ms.count() << "\n";
         
     }
     

@@ -8,9 +8,9 @@
 #include<algorithm>
 #include"point.hpp"
 
-#define MAX_WIDTH 20
-#define MAX_HEIGHT 20
-#define NUM_OBSTACLE 100    // size * size / 4
+#define MAX_WIDTH 500
+#define MAX_HEIGHT 500
+#define NUM_OBSTACLE 62500    // size * size / 4
 
 class Map {
     private:
@@ -21,6 +21,7 @@ class Map {
         bool openList2[MAX_WIDTH][MAX_HEIGHT];
         Point* closedList[MAX_WIDTH][MAX_HEIGHT];
         bool closedList2[MAX_WIDTH][MAX_HEIGHT];
+        bool notRenewal[MAX_WIDTH][MAX_HEIGHT];
         int visualizedMap[MAX_WIDTH][MAX_HEIGHT] = {0};
         std::stack<std::tuple<int, int, int, int>> s;             // current, pre
         std::vector<std::tuple<Point*, int, int, int, int>> v;    // NEED TO FIX
